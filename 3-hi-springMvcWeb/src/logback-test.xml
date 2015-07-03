@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user -->
+<!-- -->
+<!-- For professional support please see -->
+<!-- http://www.qos.ch/shop/products/professionalSupport -->
+<!-- -->
+<configuration>
+	<appender
+		name="stdout"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!-- <pattern>%d %p [%c] - %m%n</pattern> -->
+			<!-- <Pattern>%msg%n%caller{0}</Pattern> -->
+			<Pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} %-5level [%thread] %n%msg%n%caller{20}</Pattern>
+		</encoder>
+	</appender>
+	<root level="INFO">
+		<appender-ref ref="stdout"/>
+	</root>
+	
+    <logger name="org.hibernate" level="WARN"/>
+    <!-- <logger name="org.springframework" level="WARN"/> -->
+    <logger name="com.opensymphony" level="WARN"/>
+    <logger name="org.apache" level="WARN"/>
+
+</configuration>
+

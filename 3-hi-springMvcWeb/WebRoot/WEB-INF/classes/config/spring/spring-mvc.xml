@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+
+    <bean class="com.helpinput.spring.support.SourceFileMonitorListener">
+        <property name="dirs">
+            <list>
+                <value>/WEB-INF/script/**/*.java</value>
+                <value>/WEB-INF/script/**/*.groovy</value>
+            </list>
+        </property>
+        <!-- the is property the  interval for scan source for changes by ms  -->
+        <!-- 该选项设置扫舞代码的间隔时间 ,以ms计 -->
+        <!-- can overide the source monitor interval dynamic -->
+        <!-- see com.script.settings.IntervalSetting -->
+        <property name="interval" value="6000" />
+    </bean>
+
+    <context:component-scan base-package="com.tgb" />
+    <!-- do not add script packages -->
+   <!--  <context:component-scan base-package="com.script" /> -->
+
+    <mvc:annotation-driven />
+
+    <mvc:resources location="/js/" mapping="/js/**" />
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+</beans>
