@@ -5,6 +5,7 @@
 被编译成java class 字节码，并添加（替换）到spring bean中,而且可以重复替换.同时删除的java文件
 相应的class也会从spring bean 中删除
 在本项目中，.java/.groovy的增删修改如同.jsp/php一样
+它的优点不是另一个框架，而是最大限度地集成到现有的框架中，将之变为动态
 
 1-hi-utils 是工具包
 
@@ -29,3 +30,5 @@ In spring-dyanmaic ,.java/.groovy can be deployed just like .jsp/php
 3-hi-springMvcWeb is the sample(spring mvc+hibernate+spring-dynimic)
 3-hi-springScript js java(scprit) project,it has a linked source folder to 3-hi-springMvcWeb\WebRoot\WEB-INF\script
 java/groovy file in 3-hi-springScript can be deployed as .jsp file,and not need restart the webapp container(tomcat) 
+
+It 's not a anather framework but a project integrate to your  existing projects and let them dynamic
