@@ -29,10 +29,3 @@ In spring-dyanmaic ,.java/.groovy can be deployed just like .jsp/php
 3-hi-springMvcWeb is the sample(spring mvc+hibernate+spring-dynimic)
 3-hi-springScript js java(scprit) project,it has a linked source folder to 3-hi-springMvcWeb\WebRoot\WEB-INF\script
 java/groovy file in 3-hi-springScript can be deployed as .jsp file,and not need restart the webapp container(tomcat) 
-
-
-
-
-
-
-
