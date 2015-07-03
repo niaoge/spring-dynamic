@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.helpinput.hi</groupId>
+    <artifactId>helpinput-parent</artifactId>
+    <version>1.2.4</version>
+    <packaging>pom</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <springVersion>3.2.4.RELEASE</springVersion>
+        <hiVersion>${parent.version}</hiVersion>
+        <mongoVer>20140124</mongoVer>
+        <jsfVersion>2.2.7</jsfVersion>
+    </properties>
+    <repositories>
+        <repository>
+            <id>spring-relase</id>
+            <name>spring-relase</name>
+            <url>http://repo.spring.io/release/</url>
+        </repository>
+        <repository>
+            <id>cpdetector-id</id>
+            <name>cpdetector-name</name>
+            <url>http://maven.nuiton.org/nexus/content/groups/releases/</url>
+        </repository>
+        <repository>
+            <id>ibiblio</id>
+            <name>ibiblio</name>
+            <url>http://mirrors.ibiblio.org/pub/mirrors/maven2/</url>
+        </repository>
+    </repositories>
+    <dependencies>
+
+    </dependencies>
+</project>
