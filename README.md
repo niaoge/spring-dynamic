@@ -9,8 +9,27 @@
         &lt;/property&gt;
     &lt;/bean&gt;
 </pre>    
- 
 
+
+<pre> 
+The spring-dynamic project and it'samples(spring mvc3+hibernate4+spring-dynimic1.24)
+ 
+the spring-dynamic project can generate spring bean dynamically,The dynamic java/groovy file can be 
+import to another dynamic java/groovy file. They all can be add ,modify,delete,and then the spring context does
+the same.
+In spring-dyanmaic ,.java/.groovy can be deployed just like other dynamic lang .jsp/php/ruby/go ...
+
+1-hi-utils folder is tool project and depended by the spring-dyamic project
+2-hi-spring-dynamic folder contains spring-dynamic project
+3-hi-spring-Dynamic-mvc-demo is the sample(spring mvc+hibernate+spring-dynimic)
+3-hi-spring-dynamic-mvc-demo-script js java(scprit) project,it has a linked source folder to 3-hi-springMvcWeb\WebRoot\WEB-INF\script
+java/groovy file in 3-hi-spring-dynamic-mvc-demo-script can be deployed as .jsp file,and not need restart the webapp container(tomcat) 
+
+It 's not a anather framework but a project integrate to your existing projects and let them dynamic
+</pre>
+
+
+<pre>
 这是一个动态的spring项目及范例
 
 动态地生成spring bean,包括entity,dao,manager(service),controller等等 动态类之间可以相互
@@ -30,18 +49,6 @@
 interceptor也可以写在里面,它有一个 linked source类型的文件夹,指向 3-hi-springMvcWeb\WebRoot\WEB-INF\script ，而不是在
 本地文件夹下，在3-hi-spring-dynamic-mvc-demo-script项目中修改后的代码，在测式环境下如同.jsp一样发布即生效，在生产环境
 下（升级），直接将(.java/.grooy)拷贝到相应的文件夹下WebRoot\WEB-INF\script，随即生效，不用重启web容器(tomcat)
+</pre>
 
-The spring-dynamic project and it'samples(spring mvc3+hibernate4+spring-dynimic1.24)
- 
-the spring-dynamic project can generate spring bean dynamically,The dynamic java/groovy file can be 
-import to another dynamic java/groovy file. They all can be add ,modify,delete,and then the spring context does
-the same.
-In spring-dyanmaic ,.java/.groovy can be deployed just like other dynamic lang .jsp/php/ruby/go ...
 
-1-hi-utils folder is tool project and depended by the spring-dyamic project
-2-hi-spring-dynamic folder contains spring-dynamic project
-3-hi-spring-Dynamic-mvc-demo is the sample(spring mvc+hibernate+spring-dynimic)
-3-hi-spring-dynamic-mvc-demo-script js java(scprit) project,it has a linked source folder to 3-hi-springMvcWeb\WebRoot\WEB-INF\script
-java/groovy file in 3-hi-spring-dynamic-mvc-demo-script can be deployed as .jsp file,and not need restart the webapp container(tomcat) 
-
-It 's not a anather framework but a project integrate to your existing projects and let them dynamic
