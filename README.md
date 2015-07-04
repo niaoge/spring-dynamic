@@ -3,8 +3,8 @@
     &lt;bean class="com.helpinput.spring.support.SourceFileMonitorListener"&gt;
         &lt;property name="dirs"&gt;
             &lt;list&gt;
-                &lt;value&gt;/WEB-INF/script/**/*.java&lt;/value&gt;
-                &lt;value&gt;/WEB-INF/script/**/*.groovy&lt;/value&gt;
+                &lt;value&gt;/WEB-INF/script/&#42;&#42;/&#42;.java&lt;/value&gt;
+                &lt;value&gt;/WEB-INF/script/&#42;&#42;/&#42;.groovy&lt;/value&gt;
             &lt;/list&gt;
         &lt;/property&gt;
     &lt;/bean&gt;
