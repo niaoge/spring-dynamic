@@ -1,4 +1,5 @@
- one bean make project dynamic
+﻿ one bean make project dynamic
+ <pre>
     &lt;bean class="com.helpinput.spring.support.SourceFileMonitorListener"&gt;
         &lt;property name="dirs"&gt;
             &lt;list&gt;
@@ -7,7 +8,9 @@
             &lt;/list&gt;
         &lt;/property&gt;
     &lt;/bean&gt;
-    
+</pre>    
+ 
+
 这是一个动态的spring项目及范例
 
 动态地生成spring bean,包括entity,dao,manager(service),controller等等 动态类之间可以相互
