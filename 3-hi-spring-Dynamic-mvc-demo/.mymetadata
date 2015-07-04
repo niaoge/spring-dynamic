@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="3-hi-springMvcWeb"
+  name="3-hi-spring-Dynamic-mvc-demo"
   id="myeclipse.1434459110638"
   context-root="/springDynamicMvc"
   j2ee-spec="6.0"
-  archive="3-hi-springMvcWeb.war">
+  archive="3-hi-spring-Dynamic-mvc-demo.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>

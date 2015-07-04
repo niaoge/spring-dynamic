@@ -53,7 +53,6 @@ public class UserController {
 	
 	@RequestMapping("/addUser")
 	public String addUser(User user, HttpServletRequest request) {
-		logger.info(userManager.getClass().toString() + "........〖1〗........" + userManager);
 		userManager.addUser(user);
 		
 		return "redirect:/user/getAllUser";

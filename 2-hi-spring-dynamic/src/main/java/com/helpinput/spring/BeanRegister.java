@@ -155,7 +155,6 @@ class BeanRegister {
 		BeanDefinition bd = null;
 		if (!Utils.hasLength(scope))
 			scope = findScopeStr(clz);
-		//logger.info(beanName + "........〖1〗........" + scope);
 		
 		Parent ann = clz.getAnnotation(Parent.class);
 		if (ann != null) {

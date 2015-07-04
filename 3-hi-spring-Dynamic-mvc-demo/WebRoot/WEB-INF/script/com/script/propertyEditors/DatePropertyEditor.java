@@ -29,7 +29,6 @@ public class DatePropertyEditor extends PropertyEditorSupport {
 	}
 	
 	public void setAsText(String text) throws IllegalArgumentException {
-		logger.info( text+ "........〖1〗........" + format);
 		if (Utils.hasLength(text) && Utils.hasLength(format)) {
 			SimpleDateFormat sdf = new SimpleDateFormat(format);
 			try {
@@ -38,7 +37,7 @@ public class DatePropertyEditor extends PropertyEditorSupport {
 				return;
 			}
 			catch (ParseException e) {
-				System.out.println(e.getMessage() + "data format error!");
+				throw new IllegalArgumentException("data format error!");
 			}
 		}
 		setValue(null);

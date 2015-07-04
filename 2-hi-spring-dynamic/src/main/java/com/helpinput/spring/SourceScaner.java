@@ -355,8 +355,6 @@ class SourceScaner {
 			String typeNameTmp = real.getType().toString();
 			String className = hasScanedTypeName(typeNameTmp, scanedNames, scanedImputs);
 			
-			//			if (fileName[0].endsWith("User.groovy"))
-			//				logger.info(real + "........〖1〗........" + typeNameTmp + "....................." + className);
 			
 			if (hasLength(className)) {
 				Expression expression = new FieldAccessExpr(new NameExpr("com.helpinput.core"), "Utils");
@@ -495,20 +493,17 @@ class SourceScaner {
 	private void visitChildren(Node node, List<ArrayInitializerExpr> arrayInitializerExprs,
 								Map<String, String> scanedNames, Set<String> scanedImputs,
 								Map<String, Pattern> scanedRefeWrap, final String... fileName) {
-		int level = 0;
-		Node parent = node.getParentNode();
-		while (parent != null) {
-			parent = parent.getParentNode();
-			level++;
-		}
-		if (level > 0 && fileName.length > 0 && fileName[0].endsWith("TeacherManager.java")) {
-			if (node instanceof ClassOrInterfaceDeclaration) {
-				ClassOrInterfaceDeclaration real = (ClassOrInterfaceDeclaration) node;
-				logger.info(real.getClass() + "........〖1〗........" + real.getName());
-				
-			}
-			//logger.info(node.getClass() + "........〖" + level + "〗........" + node);
-		}
+//		int level = 0;
+//		Node parent = node.getParentNode();
+//		while (parent != null) {
+//			parent = parent.getParentNode();
+//			level++;
+//		}
+//		if (level > 0 && fileName.length > 0 && fileName[0].endsWith("TeacherManager.java")) {
+//			if (node instanceof ClassOrInterfaceDeclaration) {
+//				ClassOrInterfaceDeclaration real = (ClassOrInterfaceDeclaration) node;
+//			}
+//		}
 		
 		List<Node> children = node.getChildrenNodes();
 		if (Utils.hasLength(children)) {

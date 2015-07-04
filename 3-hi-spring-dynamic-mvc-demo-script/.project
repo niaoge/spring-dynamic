@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>3-hi-springScript</name>
+	<name>3-hi-spring-dynamic-mvc-demo-script</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -25,7 +25,7 @@
 		<link>
 			<name>script</name>
 			<type>2</type>
-			<locationURI>WORKSPACE_LOC/1-hi-parent/3-hi-springMvcWeb/WebRoot/WEB-INF/script</locationURI>
+			<locationURI>WORKSPACE_LOC/1-hi-parent/3-hi-spring-Dynamic-mvc-demo/WebRoot/WEB-INF/script</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
