@@ -1,12 +1,12 @@
  one bean make project dynamic
-    <bean class="com.helpinput.spring.support.SourceFileMonitorListener">
-        <property name="dirs">
-            <list>
-                <value>/WEB-INF/script/**/*.java</value>
-                <value>/WEB-INF/script/**/*.groovy</value>
-            </list>
-        </property>
-    </bean>
+    &lt;bean class="com.helpinput.spring.support.SourceFileMonitorListener"&gt;
+        &lt;property name="dirs"&gt;
+            &lt;list&gt;
+                &lt;value&gt;/WEB-INF/script/**/*.java&lt;/value&gt;
+                &lt;value&gt;/WEB-INF/script/**/*.groovy&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
     
 这是一个动态的spring项目及范例
 
