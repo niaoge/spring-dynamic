@@ -1,22 +1,32 @@
-ÕâÊÇÒ»¸ö¶¯Ì¬µÄspringÏîÄ¿¼°·¶Àı
+ one bean make project dynamic
+    <bean class="com.helpinput.spring.support.SourceFileMonitorListener">
+        <property name="dirs">
+            <list>
+                <value>/WEB-INF/script/**/*.java</value>
+                <value>/WEB-INF/script/**/*.groovy</value>
+            </list>
+        </property>
+    </bean>
+    
+è¿™æ˜¯ä¸€ä¸ªåŠ¨æ€çš„springé¡¹ç›®åŠèŒƒä¾‹
 
-¶¯Ì¬µØÉú³Éspring bean,°üÀ¨entity,dao,manager(service),controllerµÈµÈ ¶¯Ì¬ÀàÖ®¼ä¿ÉÒÔÏà»¥
-ÒıÓÃ£¬ĞŞ¸ÄµÄ´úÂë£¨.java/.groovy£©Ö±½ÓÔö¼Óµ½appÏàÓ¦Ä¿Â¼ÏÂ£¬ÔÚ²»ĞèÒªÖØÆôappµÄÇé¿öÏÂ£¬×Ô¶¯
-±»±àÒë³Éjava class ×Ö½ÚÂë£¬²¢Ìí¼Ó£¨Ìæ»»£©µ½spring beanÖĞ,¶øÇÒ¿ÉÒÔÖØ¸´Ìæ»».Í¬Ê±É¾³ıµÄjavaÎÄ¼ş
-ÏàÓ¦µÄclassÒ²»á´Óspring bean ÖĞÉ¾³ı
-ÔÚ±¾ÏîÄ¿ÖĞ£¬.java/.groovyµÄÔöÉ¾ĞŞ¸ÄÈçÍ¬.jsp/php/ruby/goÒ»Ñù
-ËüµÄÓÅµã²»ÊÇÁíÒ»¸ö¿ò¼Ü£¬¶øÊÇ×î´óÏŞ¶ÈµØ¼¯³Éµ½ÏÖÓĞµÄ¿ò¼ÜÖĞ£¬½«Ö®±äÎª¶¯Ì¬
+åŠ¨æ€åœ°ç”Ÿæˆspring bean,åŒ…æ‹¬entity,dao,manager(service),controllerç­‰ç­‰ åŠ¨æ€ç±»ä¹‹é—´å¯ä»¥ç›¸äº’
+å¼•ç”¨ï¼Œä¿®æ”¹çš„ä»£ç ï¼ˆ.java/.groovyï¼‰ç›´æ¥å¢åŠ åˆ°appç›¸åº”ç›®å½•ä¸‹ï¼Œåœ¨ä¸éœ€è¦é‡å¯appçš„æƒ…å†µä¸‹ï¼Œè‡ªåŠ¨
+è¢«ç¼–è¯‘æˆjava class å­—èŠ‚ç ï¼Œå¹¶æ·»åŠ ï¼ˆæ›¿æ¢ï¼‰åˆ°spring beanä¸­,è€Œä¸”å¯ä»¥é‡å¤æ›¿æ¢.åŒæ—¶åˆ é™¤çš„javaæ–‡ä»¶
+ç›¸åº”çš„classä¹Ÿä¼šä»spring bean ä¸­åˆ é™¤
+åœ¨æœ¬é¡¹ç›®ä¸­ï¼Œ.java/.groovyçš„å¢åˆ ä¿®æ”¹å¦‚åŒ.jsp/php/ruby/goä¸€æ ·
+å®ƒçš„ä¼˜ç‚¹ä¸æ˜¯å¦ä¸€ä¸ªæ¡†æ¶ï¼Œè€Œæ˜¯æœ€å¤§é™åº¦åœ°é›†æˆåˆ°ç°æœ‰çš„æ¡†æ¶ä¸­ï¼Œå°†ä¹‹å˜ä¸ºåŠ¨æ€
 
-1-hi-utils ÊÇ¹¤¾ß°ü
+1-hi-utils æ˜¯å·¥å…·åŒ…
 
-2-hi-spring-dynamic ÊÇ±¾ÏîÄ¿
+2-hi-spring-dynamic æ˜¯æœ¬é¡¹ç›®
 
-3-hi-spring-Dynamic-mvc-demo ·¶Àı(spring mvc3+hibernate4+spring-dynimic1.24)
+3-hi-spring-Dynamic-mvc-demo èŒƒä¾‹(spring mvc3+hibernate4+spring-dynimic1.24)
 
-3-hi-spring-dynamic-mvc-demo-script ÊÇÉÏÃædemoµÄscrit°ü,Ò²¿ÉÒÔÖ¸Í¨³£µÄÒµÎñ²ã£¬ÒòÎªÊÇ¶¯Ì¬£¬³ıÒµÎñ²ãÍâ£¬propertyEditor¡¢
-interceptorÒ²¿ÉÒÔĞ´ÔÚÀïÃæ,ËüÓĞÒ»¸ö linked sourceÀàĞÍµÄÎÄ¼ş¼Ğ,Ö¸Ïò 3-hi-springMvcWeb\WebRoot\WEB-INF\script £¬¶ø²»ÊÇÔÚ
-±¾µØÎÄ¼ş¼ĞÏÂ£¬ÔÚ3-hi-spring-dynamic-mvc-demo-scriptÏîÄ¿ÖĞĞŞ¸ÄºóµÄ´úÂë£¬ÔÚ²âÊ½»·¾³ÏÂÈçÍ¬.jspÒ»Ñù·¢²¼¼´ÉúĞ§£¬ÔÚÉú²ú»·¾³
-ÏÂ£¨Éı¼¶£©£¬Ö±½Ó½«(.java/.grooy)¿½±´µ½ÏàÓ¦µÄÎÄ¼ş¼ĞÏÂWebRoot\WEB-INF\script£¬Ëæ¼´ÉúĞ§£¬²»ÓÃÖØÆôwebÈİÆ÷(tomcat)
+3-hi-spring-dynamic-mvc-demo-script æ˜¯ä¸Šé¢demoçš„scritåŒ…,ä¹Ÿå¯ä»¥æŒ‡é€šå¸¸çš„ä¸šåŠ¡å±‚ï¼Œå› ä¸ºæ˜¯åŠ¨æ€ï¼Œé™¤ä¸šåŠ¡å±‚å¤–ï¼ŒpropertyEditorã€
+interceptorä¹Ÿå¯ä»¥å†™åœ¨é‡Œé¢,å®ƒæœ‰ä¸€ä¸ª linked sourceç±»å‹çš„æ–‡ä»¶å¤¹,æŒ‡å‘ 3-hi-springMvcWeb\WebRoot\WEB-INF\script ï¼Œè€Œä¸æ˜¯åœ¨
+æœ¬åœ°æ–‡ä»¶å¤¹ä¸‹ï¼Œåœ¨3-hi-spring-dynamic-mvc-demo-scripté¡¹ç›®ä¸­ä¿®æ”¹åçš„ä»£ç ï¼Œåœ¨æµ‹å¼ç¯å¢ƒä¸‹å¦‚åŒ.jspä¸€æ ·å‘å¸ƒå³ç”Ÿæ•ˆï¼Œåœ¨ç”Ÿäº§ç¯å¢ƒ
+ä¸‹ï¼ˆå‡çº§ï¼‰ï¼Œç›´æ¥å°†(.java/.grooy)æ‹·è´åˆ°ç›¸åº”çš„æ–‡ä»¶å¤¹ä¸‹WebRoot\WEB-INF\scriptï¼Œéšå³ç”Ÿæ•ˆï¼Œä¸ç”¨é‡å¯webå®¹å™¨(tomcat)
 
 The spring-dynamic project and it'samples(spring mvc3+hibernate4+spring-dynimic1.24)
  
