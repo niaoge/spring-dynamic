@@ -11,14 +11,14 @@
 
 2-hi-spring-dynamic 是本项目
 
-3-hi-spring-Dynamic-mvc-demo 范例(spring mvc+hibernate+spring-dynimic)
+3-hi-spring-Dynamic-mvc-demo 范例(spring mvc3+hibernate4+spring-dynimic1.24)
 
 3-hi-spring-dynamic-mvc-demo-script 是上面demo的scrit包,也可以指通常的业务层，因为是动态，除业务层外，propertyEditor、
 interceptor也可以写在里面,它有一个 linked source类型的文件夹,指向 3-hi-springMvcWeb\WebRoot\WEB-INF\script ，而不是在
 本地文件夹下，在3-hi-spring-dynamic-mvc-demo-script项目中修改后的代码，在测式环境下如同.jsp一样发布即生效，在生产环境
 下（升级），直接将(.java/.grooy)拷贝到相应的文件夹下WebRoot\WEB-INF\script，随即生效，不用重启web容器(tomcat)
 
-The spring-dynamic project and it'samples
+The spring-dynamic project and it'samples(spring mvc3+hibernate4+spring-dynimic1.24)
  
 the spring-dynamic project can generate spring bean dynamically,The dynamic java/groovy file can be 
 import to another dynamic java/groovy file. They all can be add ,modify,delete,and then the spring context does
