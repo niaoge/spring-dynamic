@@ -45,7 +45,7 @@
 	<!-- 配置事务，使用代理的方式 -->
     <!-- <bean id="transactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" -->
     <!-- 使用下列factory 以便 产生cglibproxy -->
-    <bean id="transactionProxy" class="com.helpinput.transaction.interceptor.OptimizeTransactionProxyFactoryBean"
+    <bean id="transactionProxy" class="com.helpinput.spring.proxy.OptimizeTransactionProxyFactoryBean"
         abstract="true">
         <property name="transactionManager" ref="transactionManager"></property>
         <property name="transactionAttributes">

@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.context.annotation.Scope;
 
-import com.helpinput.spring.annotation.Parent;
-import com.helpinput.spring.annotation.Prototype;
+import com.helpinput.annotation.Parent;
+import com.helpinput.annotation.Prototype;
 
 @Entity
 @Table(name="T_Teacher")

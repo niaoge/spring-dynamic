@@ -17,11 +17,34 @@
 /**
  *@Author: niaoge(Zhengsheng Xia)
  *@Email 78493244@qq.com
- *@Date: 2015-7-3
+ *@Date: 2015-7-6
  */
-package com.helpinput.settings;
+package com.helpinput.holder;
 
+import java.util.LinkedList;
+import java.util.List;
 
-public class Options {
-	public static volatile Long scanInterval = 6000L;
+public class SafeHolder<T extends Object> {
+	private List<T> holder = new LinkedList<>();
+	
+	public void register(T item) {
+		synchronized (holder) {
+			if (!holder.contains(item)) {
+				holder.add(item);
+			}
+		}
+	}
+	
+	public void remover(T item) {
+		synchronized (holder) {
+			holder.remove(item);
+		}
+	}
+	
+	public List<T> getList() {
+		synchronized (holder) {
+			return new LinkedList<>(holder);
+		}
+	}
+	
 }

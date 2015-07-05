@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.helpinput.spring.ScanedType;
 
-public class CommonRefresher extends  com.helpinput.spring.contex.refreshers.CommonRefresher{
+public class CommonRefresher extends  com.helpinput.spring.refresher.CommonRefresher{
 
 	@Override
 	public void refresh(ApplicationContext context, Map<Class<?>, ScanedType> refreshedClass) {

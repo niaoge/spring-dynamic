@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.helpinput.spring.annotation.Parent;
+import com.helpinput.annotation.Parent;
 import com.script.dao.TeacherDao;
 import com.script.entity.Teacher;
 

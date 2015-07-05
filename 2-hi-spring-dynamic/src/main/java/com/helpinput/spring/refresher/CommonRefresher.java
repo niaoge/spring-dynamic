@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 /**
  *@Author: niaoge(Zhengsheng Xia)
  *@Email 78493244@qq.com
  *@Date: 2015-7-3
  */
-package com.helpinput.settings;
+package com.helpinput.spring.refresher;
 
+import javax.inject.Named;
 
-public class Options {
-	public static volatile Long scanInterval = 6000L;
+@Named
+public abstract class CommonRefresher implements ContextRefresher{
+
 }

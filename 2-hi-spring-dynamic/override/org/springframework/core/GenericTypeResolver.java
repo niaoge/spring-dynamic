@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 import org.springframework.util.Assert;
 import org.springframework.util.ConcurrentReferenceHashMap;
 
-import com.helpinput.spring.annotation.Dynamic;
+import com.helpinput.annotation.Dynamic;
 import com.helpinput.core.LoggerBase;
 
 /**

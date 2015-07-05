@@ -36,9 +36,9 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 
 import com.helpinput.core.Utils;
 import com.helpinput.spring.Commons;
-import com.helpinput.spring.annotation.Properties;
-import com.helpinput.spring.annotation.Property;
-import com.helpinput.spring.annotation.TargetType;
+import com.helpinput.annotation.Properties;
+import com.helpinput.annotation.Property;
+import com.helpinput.annotation.TargetType;
 import org.slf4j.Logger;
 import com.helpinput.core.LoggerBase;
 

@@ -30,12 +30,13 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.support.AbstractApplicationContext;
 
-
 import com.helpinput.core.LoggerBase;
+import com.helpinput.holder.ContextHolder;
 import com.helpinput.propertyeditors.GLClassEditor;
 import com.helpinput.propertyeditors.PropertyEditorRegister;
 import com.helpinput.settings.Options;
 import com.helpinput.spring.SourceFileMonitor;
+import com.helpinput.spring.registinerceptor.ProxybeanRegistInterceptor;
 
 public class SourceFileMonitorListener implements ApplicationListener<ContextRefreshedEvent> {
 	static Logger logger = LoggerBase.logger;
@@ -45,6 +46,7 @@ public class SourceFileMonitorListener implements ApplicationListener<ContextRef
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
+		ContextHolder.beanRegistIntercpterHolder.register(new ProxybeanRegistInterceptor());
 		
 		ApplicationContext applicationContext = event.getApplicationContext();
 		DefaultListableBeanFactory dlbf = (DefaultListableBeanFactory) ((AbstractApplicationContext) applicationContext)

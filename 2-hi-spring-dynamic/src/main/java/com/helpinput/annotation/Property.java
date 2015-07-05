@@ -13,15 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 /**
  *@Author: niaoge(Zhengsheng Xia)
  *@Email 78493244@qq.com
- *@Date: 2015-7-3
+ *@Date: 2015-7-5
  */
-package com.helpinput.settings;
+package com.helpinput.annotation;
+
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
 
-public class Options {
-	public static volatile Long scanInterval = 6000L;
+@Target({ TYPE })
+@Retention(RUNTIME)
+@Documented
+@Inherited
+public @interface Property {
+
+	String name();
+	String value();
+	
 }

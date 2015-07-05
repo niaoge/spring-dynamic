@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2012 the original author or authors.
+ * Copyright 2013-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+/**
+ *@Author: niaoge(Zhengsheng Xia)
+ *@Email 78493244@qq.com
+ *@Date: 2015-7-6
+ */
+
 package com.helpinput.propertyeditors;
 
 import java.beans.PropertyEditorSupport;
@@ -21,44 +27,21 @@ import java.beans.PropertyEditorSupport;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
-import com.helpinput.spring.annotation.TargetType;
+import com.helpinput.annotation.TargetType;
 import com.helpinput.spring.support.ClassLoaderHolder;
-
-/**
- * Property editor for {@link Class java.lang.Class}, to enable the direct
- * population of a {@code Class} property without recourse to having to use a
- * String class name property as bridge.
- * 
- * <p>
- * Also supports "java.lang.String[]"-style array class names, in contrast to
- * the standard {@link Class#forName(String)} method.
- * 
- * @author Juergen Hoeller
- * @author Rick Evans
- * @since 13.05.2003
- * @see Class#forName
- * @see org.springframework.util.ClassUtils#forName(String, ClassLoader)
- */
+import org.slf4j.Logger;
+import com.helpinput.core.LoggerBase;
 
 @TargetType(Class.class)
 public class GLClassEditor extends PropertyEditorSupport {
+	static Logger logger = LoggerBase.logger;
 	
 	private final ClassLoader classLoader;
 	
-	/**
-	 * Create a default ClassEditor, using the thread context ClassLoader.
-	 */
 	public GLClassEditor() {
 		this(null);
 	}
 	
-	/**
-	 * Create a default ClassEditor, using the given ClassLoader.
-	 * 
-	 * @param classLoader
-	 *            the ClassLoader to use (or {@code null} for the thread context
-	 *            ClassLoader)
-	 */
 	public GLClassEditor(ClassLoader classLoader) {
 		this.classLoader = (classLoader != null ? classLoader : GLClassEditor.class.getClassLoader());
 	}
@@ -66,12 +49,15 @@ public class GLClassEditor extends PropertyEditorSupport {
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
 		if (StringUtils.hasText(text)) {
+			Class<?> result;
 			try {
-				setValue(ClassUtils.resolveClassName(text.trim(), this.classLoader));
+				result = ClassUtils.resolveClassName(text.trim(), this.classLoader);
 			}
-			catch (Exception e) {
-				setValue(ClassUtils.resolveClassName(text.trim(), ClassLoaderHolder.gcl));
+			catch (IllegalArgumentException e) {
+				//for sessionFactory annotatedClasses
+				result = ClassUtils.resolveClassName(text.trim(), ClassLoaderHolder.gcl);
 			}
+			setValue(result);
 		}
 		else {
 			setValue(null);
@@ -80,7 +66,7 @@ public class GLClassEditor extends PropertyEditorSupport {
 	
 	@Override
 	public String getAsText() {
-		Class clazz = (Class) getValue();
+		Class<?> clazz = (Class<?>) getValue();
 		if (clazz != null) {
 			return ClassUtils.getQualifiedName(clazz);
 		}

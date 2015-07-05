@@ -46,23 +46,21 @@ import java.util.Map.Entry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.PropertyValue;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.beans.factory.config.RuntimeBeanReference;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.AbstractApplicationContext;
 
 import com.helpinput.core.Utils;
+import com.helpinput.holder.ContextHolder;
 import com.helpinput.propertyeditors.PropertyEditorRegister;
-import com.helpinput.spring.annotation.Parent;
-import com.helpinput.spring.contex.refreshers.ContextRefresher;
+import com.helpinput.spring.refresher.ContextRefresher;
+import com.helpinput.spring.registinerceptor.BeanRegistInterceptor;
 
-class BeanRegister {
+public class BeanRegister {
 	static Logger logger = LoggerFactory.getLogger(BeanRegister.class);
 	
 	enum Info {
@@ -152,37 +150,21 @@ class BeanRegister {
 		if (!Utils.hasLength(beanName))
 			return null;
 		
+		removeBean(dlbf, beanInfo, null);
+		
 		BeanDefinition bd = null;
 		if (!Utils.hasLength(scope))
 			scope = findScopeStr(clz);
 		
-		Parent ann = clz.getAnnotation(Parent.class);
-		if (ann != null) {
-			String parentName = ann.value();
-			String property = ann.property();
-			if (Utils.hasLength(parentName) && Utils.hasLength(property)) {
-				
-				GenericBeanDefinition parent = (GenericBeanDefinition) dlbf.getBeanDefinition(parentName);
-				if (parent != null) {
-					String baseBeanName = beanName + "$$$$";
-					removeBean(dlbf, null, baseBeanName);
-					BeanDefinition basebd = builder.getBeanDefinition();
-					basebd.setScope(scope);
-					dlbf.registerBeanDefinition(baseBeanName, basebd);
-					
-					bd = new GenericBeanDefinition();
-					
-					bd.setParentName(parentName);
-					List<PropertyValue> propertyValueList = bd.getPropertyValues().getPropertyValueList();
-					RuntimeBeanReference reference = new RuntimeBeanReference(baseBeanName);
-					PropertyValue pValue = new PropertyValue(property, reference);
-					propertyValueList.add(pValue);
-					//dlbf.getBean(baseBeanName);
-				}
+		List<BeanRegistInterceptor> interceptors = ContextHolder.beanRegistIntercpterHolder.getList();
+		if (Utils.hasLength(interceptors)) {
+			for (BeanRegistInterceptor beanRegistInterceptor : interceptors) {
+				bd = beanRegistInterceptor.beforeRegist(clz, beanName, scope, dlbf, builder);
+				if (bd != null)
+					break;
 			}
 		}
 		
-		removeBean(dlbf, beanInfo, null);
 		if (bd == null)
 			bd = builder.getBeanDefinition();
 		
@@ -198,14 +180,14 @@ class BeanRegister {
 		BeanDefinitionWrap beanDefinitionWrap = new BeanDefinitionWrap(beanName, bd);
 		
 		if (ContextRefresher.class.isAssignableFrom(clz)) {
-			RefresherHolder.registerRefresher(beanName);
+			ContextHolder.refreshers.register(beanName);
 		}
 		
 		logRegist(isUpdate ? Info.Updated : Info.Registed, relativePath, beanName, scope);
 		return beanDefinitionWrap;
 	}
 	
-	protected static boolean removeBean(DefaultListableBeanFactory dlbf, BeanInfo beanInfo, String beanName) {
+	public static boolean removeBean(DefaultListableBeanFactory dlbf, BeanInfo beanInfo, String beanName) {
 		BeanDefinition bd = null;
 		if (!Utils.hasLength(beanName))
 			if (beanInfo != null)
@@ -234,8 +216,17 @@ class BeanRegister {
 				dlbf.removeBeanDefinition(beanName);
 				if (beanInfo != null && beanInfo.beanClass != null
 						&& PropertyEditor.class.isAssignableFrom(beanInfo.beanClass)) {
-					RefresherHolder.removeRefresher(beanName);
+					ContextHolder.refreshers.remover(beanName);
 				}
+				
+				List<BeanRegistInterceptor> interceptors = ContextHolder.beanRegistIntercpterHolder.getList();
+				if (Utils.hasLength(interceptors)) {
+					for (BeanRegistInterceptor beanRegistInterceptor : interceptors) {
+						if (beanRegistInterceptor.afterRemove(beanInfo.beanClass, beanName, scope, dlbf))
+							break;
+					}
+				}
+				
 				logRegist(Info.Removed, (String) bd.getAttribute(relativePath), beanInfo.beanName, scope);
 				return true;
 			}
@@ -261,27 +252,27 @@ class BeanRegister {
 				.getBeanFactory();
 		
 		for (Entry<Class<?>, ScanedType> entry : refreshedClass.entrySet()) {
-			if (entry.getValue().getValue() > ScanedType.SAME.getValue() && PropertyEditor.class.isAssignableFrom(entry.getKey())) {
+			if (entry.getValue().getValue() > ScanedType.SAME.getValue()
+					&& PropertyEditor.class.isAssignableFrom(entry.getKey())) {
 				@SuppressWarnings("unchecked")
 				Class<? extends PropertyEditor> propertyEditorType = (Class<? extends PropertyEditor>) entry.getKey();
 				PropertyEditorRegister.registerProtertyEditor(dlbf, propertyEditorType);
 			}
 		}
 		
-		synchronized (RefresherHolder.refresherNames) {
-			if (Utils.hasLength(RefresherHolder.refresherNames)) {
-				for (String contextRefresherName : RefresherHolder.refresherNames) {
-					Object bean = null;
-					try {
-						bean = context.getBean(contextRefresherName);
-					}
-					catch (BeansException e) {
-						logger.info("bean of [" + contextRefresherName + "] not found!");
-					}
-					if (bean != null && bean instanceof ContextRefresher) {
-						contextRefresher = (ContextRefresher) bean;
-						contextRefresher.refresh(context, refreshedClass);
-					}
+		List<String> refresherNames = ContextHolder.refreshers.getList();
+		if (Utils.hasLength(refresherNames)) {
+			for (String contextRefresherName : refresherNames) {
+				Object bean = null;
+				try {
+					bean = context.getBean(contextRefresherName);
+				}
+				catch (BeansException e) {
+					logger.info("bean of [" + contextRefresherName + "] not found!");
+				}
+				if (bean != null && bean instanceof ContextRefresher) {
+					contextRefresher = (ContextRefresher) bean;
+					contextRefresher.refresh(context, refreshedClass);
 				}
 			}
 		}

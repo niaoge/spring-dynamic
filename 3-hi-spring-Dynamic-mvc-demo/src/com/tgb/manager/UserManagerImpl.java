@@ -5,7 +5,7 @@ package com.tgb.manager;
 
 import java.util.List;
 
-import com.helpinput.spring.annotation.Parent;
+import com.helpinput.annotation.Parent;
 import com.tgb.dao.UserDao;
 import com.tgb.entity.User;
 

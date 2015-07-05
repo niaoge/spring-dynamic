@@ -13,15 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 /**
  *@Author: niaoge(Zhengsheng Xia)
  *@Email 78493244@qq.com
- *@Date: 2015-7-3
+ *@Date: 2015-6-30
  */
-package com.helpinput.settings;
+package com.helpinput.spring.refresher;
 
+import java.util.Map;
 
-public class Options {
-	public static volatile Long scanInterval = 6000L;
+import org.springframework.context.ApplicationContext;
+
+import com.helpinput.spring.ScanedType;
+
+public interface ContextRefresher {
+	public void refresh(ApplicationContext context,Map<Class<?>, ScanedType> refreshedClass) ;
 }

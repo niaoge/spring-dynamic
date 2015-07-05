@@ -13,15 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 /**
  *@Author: niaoge(Zhengsheng Xia)
  *@Email 78493244@qq.com
- *@Date: 2015-7-3
+ *@Date: 2015-7-7
  */
-package com.helpinput.settings;
+package com.helpinput.spring.registinerceptor;
 
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 
-public class Options {
-	public static volatile Long scanInterval = 6000L;
+public interface BeanRegistInterceptor {
+	BeanDefinition beforeRegist(Class<?> clz, String beanName, String scope, DefaultListableBeanFactory dlbf,
+								BeanDefinitionBuilder builder);
+	
+	boolean afterRemove(Class<?> clz, String beanName, String scope, DefaultListableBeanFactory dlbf);
+	
+	boolean  getCondition(Class<?> clz);
+	
 }

@@ -80,6 +80,7 @@ import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.PrimitiveType;
 import com.github.javaparser.ast.type.ReferenceType;
 import com.github.javaparser.ast.type.VoidType;
+import com.helpinput.annotation.Dynamic;
 import com.helpinput.core.FileUtils;
 import com.helpinput.core.LoggerBase;
 import com.helpinput.core.PathUtil;
@@ -335,7 +336,7 @@ class SourceScaner {
 				//public String addUser(User user, HttpServletRequest request) { -->  
 				//public String addUser(@com.helpinput.spring.Dynamic("com.tgb.entity.User") Object user, HttpServletRequest request) {
 				SingleMemberAnnotationExpr singleExpr = new SingleMemberAnnotationExpr(new NameExpr(
-						"com.helpinput.spring.annotation.Dynamic"), new StringLiteralExpr(classWholeName));
+						Dynamic.class.getName()), new StringLiteralExpr(classWholeName));
 				annoList.add(singleExpr);
 			}
 		}

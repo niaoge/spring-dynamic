@@ -7,10 +7,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.helpinput.core.Utils;
-import com.helpinput.spring.annotation.Property;
-import com.helpinput.spring.annotation.Prototype;
-import com.helpinput.spring.annotation.Properties;
-import com.helpinput.spring.annotation.TargetType;
+import com.helpinput.annotation.Property;
+import com.helpinput.annotation.Prototype;
+import com.helpinput.annotation.Properties;
+import com.helpinput.annotation.TargetType;
 import org.slf4j.Logger;
 import com.helpinput.core.LoggerBase;
 

@@ -32,10 +32,26 @@
 
     <mvc:annotation-driven />
 
-    <mvc:resources location="/js/" mapping="/js/**" />
+    <!-- <mvc:resources location="/js/" mapping="/js/**" /> -->
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
+    
+    
+    <bean name="userIntercepptor" class="com.tgb.interceptor.UserIntercepptor" />
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/*" />
+            <ref bean="userIntercepptor"/>
+        </mvc:interceptor>
+        
+
+<!--         <mvc:interceptor>
+            <mvc:mapping path="/teacher/*" />
+            <bean class="com.tgb.interceptor.UserIntercepptor" />
+        </mvc:interceptor> -->
+    </mvc:interceptors>
+
 </beans>
