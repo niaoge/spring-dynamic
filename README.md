@@ -1,9 +1,8 @@
-﻿tomcat运行起来后，试着改变增加删除 3-hi-spring-dynamic-mvc-demo-script项目下的srcipt文件夹
+﻿tomcat运行起来后，试着改变增加删除 3-hi-spring-dynamic-mvc-demo-script项目下的script文件夹
 的java或groovy文件，就知道了
 
-after run tomcat ,try to change/add/delete java/groovy file in source folder of 
+after run tomcat ,try to change/add/delete java/groovy file in script source folder of 
 3-hi-spring-dynamic-mvc-demo-script project ,you will know
-
 
  
 one bean make project dynamic
