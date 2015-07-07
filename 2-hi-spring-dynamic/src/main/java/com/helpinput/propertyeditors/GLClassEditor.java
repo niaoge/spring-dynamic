@@ -56,6 +56,12 @@ public class GLClassEditor extends PropertyEditorSupport {
 			catch (IllegalArgumentException e) {
 				//for sessionFactory annotatedClasses
 				result = ClassUtils.resolveClassName(text.trim(), ClassLoaderHolder.gcl);
+				try {
+					throw new Exception();
+				}
+				catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 			setValue(result);
 		}

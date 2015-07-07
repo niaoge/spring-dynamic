@@ -91,7 +91,6 @@ public class MvcContextRefresher implements ContextRefresher {
 					}
 				}
 			}
-			
 		}
 		
 		if (needUpdateHandlerMapping) {
